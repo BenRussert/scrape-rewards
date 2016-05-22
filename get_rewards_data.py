@@ -36,6 +36,7 @@ data = [line.replace("$","").split() for line in list(unique) if re.match(pat, l
 
 with open('rewards{0}.csv'.format(time.strftime("%Y%m%d-%H%M%S")), 'w', newline='') as f:
     writer = csv.writer(f)
+    writer.writerow(['date', 'reward', 'cumulative'])
     writer.writerows(data)
     
 # cleanup files

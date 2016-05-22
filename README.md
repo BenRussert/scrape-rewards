@@ -21,11 +21,12 @@ This script uses tesseract-ocr and python to extract the data from screenshots a
  
  --------------------
 ### To try it out:
-* Take screen shots of your rewards history data and put them in the ./screenshots directory
+* Take screen shots of your rewards history data and put them in the ./screenshots directory (example below)
 
-<a href="url"><img src="./screenshots/Screenshot1.png" align="left" height="243" width="430" ></a>
 * Run:
 ```
 python ./get_rewards_data.py
 ```
 * A timestamped csv file will be placed placed in the current directory
+
+<a href="url"><img src="./screenshots/Screenshot1.png" align="left" height="430" width="243" ></a>
