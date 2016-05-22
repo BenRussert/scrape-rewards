@@ -27,7 +27,12 @@ for filename in files:
 pat = re.compile("^\d\d?/") 
 
 # remove dollar signs and only take relevant lines
-data = [line.replace("$","").split() for line in data if re.match(pat, line)]
+unique = set()
+for record in data:
+    if not record in unique:
+        unique.add(record)
+        
+data = [line.replace("$","").split() for line in list(unique) if re.match(pat, line)]
 
 with open('rewards{0}.csv'.format(time.strftime("%Y%m%d-%H%M%S")), 'w', newline='') as f:
     writer = csv.writer(f)
