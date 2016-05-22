@@ -3,6 +3,7 @@
 import subprocess
 import csv
 import os
+import sys
 from glob import glob
 import re
 import time
@@ -34,7 +35,9 @@ for record in data:
         
 data = [line.replace("$","").split() for line in list(unique) if re.match(pat, line)]
 
-with open('rewards{0}.csv'.format(time.strftime("%Y%m%d-%H%M%S")), 'w', newline='') as f:
+csvname = 'rewards{0}.csv'.format(time.strftime("%Y%m%d-%H%M%S"))
+
+with open(csvname, 'w', newline='') as f:
     writer = csv.writer(f)
     writer.writerow(['date', 'reward', 'cumulative'])
     writer.writerows(data)
@@ -42,3 +45,10 @@ with open('rewards{0}.csv'.format(time.strftime("%Y%m%d-%H%M%S")), 'w', newline=
 # cleanup files
 for f in files:
     os.remove(f)
+    
+#
+if len(sys.argv) <= 1 or sys.argv[1] != '-v': 
+    pass
+elif sys.argv[1] == '-v':
+    from analyze_rewards import dataframe_rewards
+    dataframe_rewards(csvname)
