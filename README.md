@@ -23,8 +23,7 @@ This script uses tesseract-ocr and python to extract the data from screenshots a
 ### To try it out:
 * Take screen shots of your rewards history data and put them in the ./screenshots directory
 
-
-![example screenshot](screenshots/Screenshot1.png)
+<a href="url"><img src="./screenshots/Screenshot1.png" align="left" height="243" width="430" ></a>
 * Run:
 ```
 python ./get_rewards_data.py
