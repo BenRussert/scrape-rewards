@@ -2,16 +2,16 @@
 
 Google Opinion Rewards lets you view your reward history within the Android app, but only as an image and with no way to export to a text format. 
 
-Since images of tabular data are a common annoyance it seemed like it could be interesting to use OCR to exract this data and possibly reuse for something else later. 
+Since images of tabular data are a common annoyance it seemed like it could be interesting to use OCR to extract this data and possibly reuse for something else later.
 
-This script uses tesseract-ocr and python to extract the data from screenshots and format into a csv file.
+This script uses [tesseract-ocr](https://github.com/tesseract-ocr/tesseract) and python to extract the data from screenshots and format into a csv file.
 
 ------------------------
 ### Note: [tesseract](https://github.com/tesseract-ocr/tesseract) is required in order for this to work.
 
- I am not sure if a Windows version of tesseract is available. I tried to find it, but was not very successful.
+Instructions for Debian Linux and Mac below. I am not sure if a Windows version of tesseract is available. I briefly tried to find it, but was not very successful.
  
-The following will install tesseract on Debian Linux distros:
+The following will install tesseract on Debian Linux distros including Raspbian for Raspberry Pi:
  
  ```
  sudo apt-get install tesseract-ocr
@@ -19,30 +19,38 @@ The following will install tesseract on Debian Linux distros:
  
 On Mac, if you have [homebrew](https://github.com/Homebrew/brew) installed you can install tesseract in Terminal with:
 ```
-brew intall tesseract
+brew install tesseract
 ```
 
  
  This script is written for python 3x, but could easily be modified for python 2x if needed.
  
- The required python packages are all standard library and this was able to run on a Raspberry Pi.
+ The required python packages for the script to work are all standard library and this was able to run on a Raspberry Pi.
  
  --------------------
 ### To try it out:
-* Take screen shots of your rewards history data and put them in the ./screenshots directory (example below)
+* Install tesseract with the instructions above
+* [Download and unzip](https://github.com/BenRussert/scrape-rewards/archive/master.zip) 
+    or clone this repository:
+    ```
+    git clone https://github.com/BenRussert/scrape-rewards.git
+    ```
 
-* Run:
+* Take screenshots of your rewards history data and put them in the ./screenshots directory (example screenshot below)
+    * Don't worry about capturing duplicate rewards entries in the images, they will be removed by the script
+
+* Open a command line and cd to the main scrape-rewards directory, run:
 ```
 python ./get_rewards_data.py
 ```
-
-* If pandas is installed where the script is running and the -v argument is appended pandas will be used for additional formatting and analysis
+* A timestamped csv file will be placed placed in the current directory, this can be opened with any spreadsheet software, text editor, etc.
+---
+### Optional Arguments:
+If you append the -v argument as below and you have [pandas](http://pandas.pydata.org/) installed the csv output will contain additional formatting and date sorting
+    * If you have pandas you should use the -v argument
 ```
 python ./get_rewards_data.py -v
 ```
-
-
-* A timestamped csv file will be placed placed in the current directory
 
 ### Output example:
 
@@ -76,6 +84,6 @@ python ./get_rewards_data.py -v
 | 2015-03-04 | 1.0    | 1.0        | 
 | 2015-03-04 | 0.0    | 0.0        | 
 
-### Original screenshot input:
+### Example screenshot input:
 
 <a href="url"><img src="./screenshots/Screenshot1.png" align="left" height="430" width="243" ></a>
